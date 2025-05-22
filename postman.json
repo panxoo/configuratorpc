@@ -1,0 +1,269 @@
+{
+	"info": {
+		"_postman_id": "f30b7a5d-45d1-4d18-931f-a495a9d6b478",
+		"name": "Components PC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20549596"
+	},
+	"item": [
+		{
+			"name": "Parameter",
+			"item": [
+				{
+					"name": "List Category",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/api/parametre/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"parametre",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD Category",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Carte Mere\",\r\n    \"description\": \"Carte Mere\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/api/parametre/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"parametre",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD Marques",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Carte Mere\",\r\n    \"description\": \"Carte Mere\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/api/parametre/marques",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"parametre",
+								"marques"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Marque",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/api/parametre/marques",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"parametre",
+								"marques"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Composants",
+			"item": [
+				{
+					"name": "ADD Composants",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titre\": \"Carte Mere samsung sss\",\r\n    \"description\": \"Carte Mere Azus sss\",\r\n    \"specificationsTechniques\": \"aaaa  az \",\r\n    \"modele\": \"zzAA\",\r\n    \"price\": 112,\r\n    \"quantity\": 33,\r\n    \"category\": \"6804331ba30a71e08c7ed2ba\",\r\n    \"marque\":\"682b9393de067c3ba0501080\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/api/composants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"composants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Composants",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/api/composants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"composants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Composants Category",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/api/composants?category=68042da8a39352cac9996b00",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"composants"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "68042da8a39352cac9996b00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Composant Detail",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/api/composants/682b93fede067c3ba0501088",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"composants",
+								"682b93fede067c3ba0501088"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Setup",
+			"item": [
+				{
+					"name": "setup",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/setup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"setup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

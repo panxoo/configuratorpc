@@ -3,12 +3,21 @@ const composant = require('../models/composants');
 module.exports.getComposants = async (query) => {
     try {
         if (query)
-            return await composant.find({ category: query });
+            return await composant.find({ category: query }).select('titre modele').populate('category', 'name').populate('marque', 'name');
         else
-            return await composant.find(); 
+            return await composant.find().select('titre modele').populate('category', 'name').populate('marque', 'name'); 
 
     } catch (err) {
         console.error('Error fetching composants:', err);
+        return null;
+    }
+}
+
+module.exports.getComposant = async (query) => {
+    try {
+        return await composant.findOne(query).populate('category', 'name').populate('marque', 'name');
+    } catch (err) {
+        console.error('Error fetching composant:', err);
         return null;
     }
 }

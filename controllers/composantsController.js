@@ -11,6 +11,16 @@ module.exports.composants = async (req, res) => {
     }
 }
 
+module.exports.composant = async (req, res) => {
+    try {
+        let composant = await composantsService.getComposant({_id: req.params.id});
+        res.status(200).json({ composant });
+    } catch (err) {
+        console.error('Error fetching composant:', err);
+        return null;
+    }
+}
+
 module.exports.register = async (req, res) => {
     try {
         // validation exists composant
@@ -43,5 +53,15 @@ module.exports.update = async (req, res) => {
         res.status(201).json({status: 201, data: composant, message: 'Composant created successfully' });
     } catch (err) {
        res.status(400).json({ status:400, message: error.message });
+    }
+}
+
+module.exports.delete = async (req, res) => {
+    try {
+        await composantsService.deleteComposant(req.params.id);
+        res.status(200).json({ status: 200, message: 'Composant deleted successfully' });
+    } catch (err) {
+        console.error('Error deleting composant:', err);
+        return null;
     }
 }
