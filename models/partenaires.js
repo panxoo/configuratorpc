@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 
-const composantSchema = new mongoose.Schema({
+const partenaireSchema = new mongoose.Schema({
     titre: { type: String, required: true, unique: true },
     description: { type: String, required: false, default: '' },
     specificationsTechniques: { type: String, required: false, default: '' },
@@ -14,4 +14,4 @@ const composantSchema = new mongoose.Schema({
     isActive: { type: Boolean, default: true },
 });
 
-module.exports = mongoose.model('Composant', composantSchema);
+module.exports = mongoose.model('Partenaire', partaneireSchema);

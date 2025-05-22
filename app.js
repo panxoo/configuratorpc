@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const verifyToken = require('./middlewares/authMiddlewares');
 const userAuthRoute = require('./routes/userAuthRoutes');
 const parametreRoute = require('./routes/parametreRoutes');
-const initApiService = require('./services/initAPIService');
+const setupRoute = require('./routes/setupRoute');
 const composantsRoute = require('./routes/composantsRoute');
 
 const app = express();
@@ -32,9 +32,7 @@ mongoose.connect(process.env.MONGO_CONNECTION, {
 app.use('/auth', userAuthRoute);
 app.use('/api/parametre', parametreRoute);
 app.use('/api/composants', composantsRoute);
-
-
-
+app.use('/setup', setupRoute);
 
 app.get('/', (req, res) => {    
     res.send('Accueil');
@@ -45,9 +43,4 @@ app.listen(8091, () => {
        console.log('Server is running on http://localhost:8091');
 });
 
-async function startServer() {
- await initApiService.addCategoryInitialData(); // Ajout des données initiales de catégorie
-
-}
-
-startServer();
+ 
