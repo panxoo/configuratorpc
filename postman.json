@@ -137,13 +137,49 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"titre\": \"Carte Mere samsung sss\",\r\n    \"description\": \"Carte Mere Azus sss\",\r\n    \"specificationsTechniques\": \"aaaa  az \",\r\n    \"modele\": \"zzAA\",\r\n    \"price\": 112,\r\n    \"quantity\": 33,\r\n    \"category\": \"6804331ba30a71e08c7ed2ba\",\r\n    \"marque\":\"682b9393de067c3ba0501080\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "titre",
+									"value": "CM samsung 3223",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Carte Mere samsung 3223",
+									"type": "text"
+								},
+								{
+									"key": "specificationsTechniques",
+									"value": "aaaa  az",
+									"type": "text"
+								},
+								{
+									"key": "modele",
+									"value": "AASD",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "33",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "6846d8d3c90934a98cc14653",
+									"type": "text"
+								},
+								{
+									"key": "marque",
+									"value": "6846d8d3c90934a98cc14661",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "postman-cloud:///1f037f2e-58ec-4e00-ba81-537cf31f3e7c"
 								}
-							}
+							]
 						},
 						"url": {
 							"raw": "http://localhost:8091/api/composants",
@@ -161,7 +197,7 @@
 					"response": []
 				},
 				{
-					"name": "List Composants",
+					"name": "List Composants All",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -184,7 +220,7 @@
 					"response": []
 				},
 				{
-					"name": "View Composants Category",
+					"name": "List Composants by Category",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -192,7 +228,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8091/api/composants?category=68042da8a39352cac9996b00",
+							"raw": "http://localhost:8091/api/composants?category=6846d8d3c90934a98cc14653",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -205,7 +241,7 @@
 							"query": [
 								{
 									"key": "category",
-									"value": "68042da8a39352cac9996b00"
+									"value": "6846d8d3c90934a98cc14653"
 								}
 							]
 						}
@@ -213,7 +249,7 @@
 					"response": []
 				},
 				{
-					"name": "View Composant Detail",
+					"name": "Detail Composant",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -221,7 +257,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8091/api/composants/682b93fede067c3ba0501088",
+							"raw": "http://localhost:8091/api/composants/6830a51a95797b7717bbd915",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -230,7 +266,116 @@
 							"path": [
 								"api",
 								"composants",
-								"682b93fede067c3ba0501088"
+								"6830a51a95797b7717bbd915"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Composants",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "titre",
+									"value": "Carte Mere dsams 6666666666666666666",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Carte Mere Azus sssDDD1 11111111111",
+									"type": "text"
+								},
+								{
+									"key": "specificationsTechniques",
+									"value": "aaaa  az",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "modele",
+									"value": "AASD",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "price",
+									"value": "1123",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "quantity",
+									"value": "33",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "category",
+									"value": "6804331ba30a71e08c7ed2ba",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "marque",
+									"value": "682b9393de067c3ba0501080",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "postman-cloud:///1f037f2e-58ec-4e00-ba81-537cf31f3e7c",
+									"disabled": true
+								},
+								{
+									"key": "_id",
+									"value": "6831a03d74223101031a32a2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8091/api/composants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"composants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Composants",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/api/composants/6831a03d74223101031a32a2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"composants",
+								"6831a03d74223101031a32a2"
 							]
 						}
 					},
@@ -258,6 +403,356 @@
 							"port": "8091",
 							"path": [
 								"setup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Partaniares",
+			"item": [
+				{
+					"name": "List partenaires All",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/api/partenaires",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"partenaires"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail partenaire",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/api/partenaires/6846e58ac90934a98cc14683",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"partenaires",
+								"6846e58ac90934a98cc14683"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add partenaire",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Fnac\",\r\n    \"url\": \"www.fnac.com\",\r\n    \"commission\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/api/partenaires",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"partenaires"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update partenaire",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Fnac\",\r\n    \"url\": \"www.fnac.fr\",\r\n    \"commission\": 4,\r\n    \"_id\": \"6846e58ac90934a98cc14683\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/api/partenaires",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"partenaires"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete partenaire",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/api/partenaires/6846e58ac90934a98cc14683",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"partenaires",
+								"6846e58ac90934a98cc14683"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "prix composant",
+			"item": [
+				{
+					"name": "List prix composant All",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/api/prixcomposant",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"prixcomposant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List prix composant for category",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/api/prixcomposant/category_partenaire?category=6846d8d3c90934a98cc14653&partenaire=6846d8d3c90934a98cc1466b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"prixcomposant",
+								"category_partenaire"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "6846d8d3c90934a98cc14653"
+								},
+								{
+									"key": "partenaire",
+									"value": "6846d8d3c90934a98cc1466b"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List prix lower composant for category",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/api/prixcomposant/category_user?category=6846d8d3c90934a98cc14653",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"prixcomposant",
+								"category_user"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "6846d8d3c90934a98cc14653"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add prix composant",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"composant\": \"6846e773c90934a98cc14695\",\r\n    \"partenaire\": \"6846d8d3c90934a98cc1466b\",\r\n    \"prix\": 250\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/api/prixcomposant",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"prixcomposant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update prix composant",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"68472d56605f059487c31420\",\r\n    \"prix\": 90\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/api/prixcomposant",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"prixcomposant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete prix composant",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/api/prixcomposant/68472d56605f059487c31420",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"prixcomposant",
+								"68472d56605f059487c31420"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Prix Composant ",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/api/prixcomposant/composant_prix?composant=6846e773c90934a98cc14695",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"prixcomposant",
+								"composant_prix"
+							],
+							"query": [
+								{
+									"key": "composant",
+									"value": "6846e773c90934a98cc14695"
+								}
 							]
 						}
 					},
