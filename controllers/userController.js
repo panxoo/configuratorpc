@@ -1,4 +1,5 @@
 const userService = require('../services/userService');
+const userAuthService = require('../services/userAuthService');
 
 module.exports.getAll = async (req, res) => {
   try {
@@ -12,7 +13,8 @@ module.exports.getAll = async (req, res) => {
 
 module.exports.user = async (req, res) => {
   try {
-    const user = await userService.getUser(req.params.id);
+    const userid = req.role === 'admin' ? (req.query.id ? req.query.id : req.user) : req.user;
+    const user = await userService.getUser(userid);
     res.status(200).json({ user });
   } catch (err) {
     console.error('Error detail user:', err);
@@ -20,33 +22,31 @@ module.exports.user = async (req, res) => {
   }
 };
 
-module.exports.register = async (req, res) => {
+module.exports.update = async (req, res) => {
   try {
-    // validation exists user
-    let userExists = await userService.existsUsers(req.body.email, req.body.username);
-    if (userExists) {
-      return res.status(409).json({ message: 'user already exists' });
+    // cree un user
+    const allowedUpdates = ['name', 'last_name', 'birthday', 'phone', 'address'];
+    const updates = req.body;
+    const filteredUpdates = {};
+
+    for (const key of allowedUpdates) {
+      if (updates[key] !== undefined) {
+        filteredUpdates[key] = updates[key];
+      }
     }
 
-    const user = await userService.addUser(req.body);
-    res.status(201).json({ status: 201, data: user, message: 'user created successfully' });
+    user = await userService.updateUser(req.user, filteredUpdates);
+    res.status(201).json({ status: 201, data: user, message: 'user updated successfully' });
   } catch (err) {
     res.status(400).json({ status: 400, message: error.message });
   }
 };
 
-module.exports.update = async (req, res) => {
+module.exports.updatePassword = async (req, res) => {
   try {
-    // validation exists user
-    let userExists = await userService.existsUsers(req.body.email, req.body.username, req.body._id);
-    if (userExists) {
-      return res.status(409).json({ message: 'user already exists' });
-    }
-
-    // cree un user
-
-    user = await userService.updateUser(req.body);
-    res.status(201).json({ status: 201, data: user, message: 'user updated successfully' });
+    // update un user
+    await userAuthService.updatePasswordS(req.user, req.body.password);
+    res.status(201).json({ status: 201, message: 'user updated successfully' });
   } catch (err) {
     res.status(400).json({ status: 400, message: error.message });
   }
@@ -54,7 +54,9 @@ module.exports.update = async (req, res) => {
 
 module.exports.delete = async (req, res) => {
   try {
-    await userService.deleteUser(req.params.id);
+    const userid = req.role === 'admin' ? (req.params.id ? req.params.id : req.user) : req.user;
+
+    await userService.deleteUser(userid);
     res.status(200).json({ status: 200, message: 'user deleted successfully' });
   } catch (err) {
     console.error('Error deleting user:', err);

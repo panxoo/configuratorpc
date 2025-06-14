@@ -12,6 +12,8 @@ const prixComposantRoute = require('./routes/prixComposantRoute');
 const userRoute = require('./routes/userRoute');
 const userConfigRoute = require('./routes/userConfigRoute');
 
+const requireRole = require('./middlewares/requireRoleMiddlewares');
+
 const app = express();
 
 dotenv.config();
@@ -31,7 +33,8 @@ mongoose
   });
 
 // routes protégées par le middleware verifyToken
-//app.use('/api', verifyToken);
+app.use('/api', verifyToken);
+app.use('/api/partenaires', requireRole(['admin']));
 
 // routes :
 

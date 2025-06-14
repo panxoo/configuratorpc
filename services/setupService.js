@@ -1,5 +1,6 @@
 const parametreService = require('./parametreService');
 const partenaireService = require('./partenairesService');
+const userAuthService = require('./userAuthService');
 
 const addMarqueInitialData = async () => {
   try {
@@ -90,8 +91,33 @@ const addPartenaireInitialData = async () => {
   }
 };
 
+const addUserInitialData = async () => {
+  try {
+    let existsUser = await userAuthService.existsUsers();
+    if (existsUser) {
+      console.log('User already exist, no need to add initial data.');
+      return;
+    }
+
+    const initialUsers = [
+      { name: 'Pedro', last_name: 'Last', email: 'pedro_last@gmail.com', role: 'admin', password: '123123' },
+      { name: 'Toto', last_name: 'PP', email: 'toto_pp@gmail.com', role: 'admin', password: '123123' },
+      { name: 'Pepe', last_name: 'AA', email: 'pepe_aa@gmail.com', role: 'user', password: '123123' },
+    ];
+
+    for (const user of initialUsers) {
+      await userAuthService.createUser(user);
+    }
+
+    console.log('Initial user added successfully!');
+  } catch (err) {
+    console.error('Error adding initial user:', err);
+  }
+};
+
 module.exports.setupInitialData = async () => {
   await addCategoryInitialData();
   await addMarqueInitialData();
   await addPartenaireInitialData();
+  await addUserInitialData();
 };

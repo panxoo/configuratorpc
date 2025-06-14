@@ -1,19 +1,5 @@
 const prixCompServ = require('../services/prixComposantService');
 
-module.exports.prixComposant = async (req, res) => {
-  try {
-    let composant = await prixCompServ.getPrixComposant(req.params.compoosantId);
-    if (!composant) {
-      return res.status(404).json({ message: 'Composant not found' });
-    }
-
-    res.status(200).json({ composant });
-  } catch (err) {
-    console.error('Error fetching composant:', err);
-    return null;
-  }
-};
-
 module.exports.prixCategoryPartenaire = async (req, res) => {
   try {
     let composant = await prixCompServ.getPrixCategoryPartenaire(req.query.category, req.query.partenaire);
@@ -27,12 +13,13 @@ module.exports.prixCategoryPartenaire = async (req, res) => {
   }
 };
 
-module.exports.getPrixCategoryPrixLower = async (req, res) => {
+module.exports.prixComposant = async (req, res) => {
   try {
-    let composant = await prixCompServ.getPrixCategoryPrixLower(req.query.category);
+    let composant = await prixCompServ.getPrixComposant(req.query.composant);
     if (!composant) {
       return res.status(404).json({ message: 'Composant not found' });
     }
+
     res.status(200).json({ composant });
   } catch (err) {
     console.error('Error fetching composant:', err);
@@ -40,9 +27,9 @@ module.exports.getPrixCategoryPrixLower = async (req, res) => {
   }
 };
 
-module.exports.prixComposant = async (req, res) => {
+module.exports.getPrixComposantLowerForCategory = async (req, res) => {
   try {
-    let composant = await prixCompServ.getPrixComposant(req.query.composant);
+    let composant = await prixCompServ.getPrixComposantLowerForCategory(req.query.category);
     if (!composant) {
       return res.status(404).json({ message: 'Composant not found' });
     }

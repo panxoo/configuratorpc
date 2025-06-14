@@ -12,7 +12,7 @@ module.exports.getuserConfigs = async (userid) => {
 module.exports.getuserConfigDetaille = async (user, _id) => {
   try {
     return await userConfig
-      .findOne({ user: user, _id: { $ne: _id } })
+      .findOne({ user: user, _id: _id })
       .select('name dateCreated dateUpdated composants.quantity composants.prixComposant')
       .populate({
         path: 'composants.prixComposant',
@@ -50,6 +50,7 @@ module.exports.adduserConfig = async (userConfigData) => {
 module.exports.existsuserConfig = async (name, user, _id) => {
   try {
     if (_id) {
+      console.log('Checking if config exists with name:', name, 'for user:', user, 'excluding id:', _id);
       return await userConfig.exists({ name: name, user: user, _id: { $ne: _id } });
     }
     return await userConfig.exists({ name: name, user: user });
@@ -61,15 +62,15 @@ module.exports.existsuserConfig = async (name, user, _id) => {
 
 module.exports.updateuserConfig = async (userConfigData) => {
   try {
-    await userConfig.findByIdAndUpdate(userConfigData._id, userConfigData);
+    await userConfig.findByIdAndUpdate(userConfigData.id, userConfigData);
   } catch (err) {
     console.error('Error updating userConfig:', err);
   }
 };
 
-module.exports.deleteuserConfig = async (id) => {
+module.exports.deleteuserConfig = async (id, user) => {
   try {
-    await userConfig.findByIdAndDelete(id);
+    await userConfig.find({ _id: id, user: user }).deleteOne();
   } catch (err) {
     console.error('Error deleting userConfig:', err);
   }

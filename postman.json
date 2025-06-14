@@ -13,7 +13,14 @@
 					"name": "List Category",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGQ1ODc0Y2RlMjgzZmU5MDY4YjdiNyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0OTkzMTA1NiwiZXhwIjoxNzQ5OTM0NjU2fQ.Cffxys0c5MGpOGYMc2k79G9VvIPSdhil259t1tkCFJQ",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
@@ -34,7 +41,7 @@
 					"response": []
 				},
 				{
-					"name": "ADD Category",
+					"name": "(Admin) ADD Category",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -67,7 +74,7 @@
 					"response": []
 				},
 				{
-					"name": "ADD Marques",
+					"name": "(Admin) ADD Marques",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -103,7 +110,14 @@
 					"name": "List Marque",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGQ1ODc0Y2RlMjgzZmU5MDY4YjdiNyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0OTkzMTA1NiwiZXhwIjoxNzQ5OTM0NjU2fQ.Cffxys0c5MGpOGYMc2k79G9VvIPSdhil259t1tkCFJQ",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
@@ -122,6 +136,86 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "(Admin) Update Marques",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGQ1ODc0Y2RlMjgzZmU5MDY4YjdiNyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0OTkzMTA1NiwiZXhwIjoxNzQ5OTM0NjU2fQ.Cffxys0c5MGpOGYMc2k79G9VvIPSdhil259t1tkCFJQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"6846d8d3c90934a98cc1465f\",\r\n    \"name\": \"SASUS\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/api/parametre/marques",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"parametre",
+								"marques"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "(Admin) Update Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGQ1ODc0Y2RlMjgzZmU5MDY4YjdiNyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0OTkzMTA1NiwiZXhwIjoxNzQ5OTM0NjU2fQ.Cffxys0c5MGpOGYMc2k79G9VvIPSdhil259t1tkCFJQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"684dd5ce58111617a51240f8\",\r\n    \"name\": \"Carte super Mere\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/api/parametre/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"parametre",
+								"categories"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -129,10 +223,17 @@
 			"name": "Composants",
 			"item": [
 				{
-					"name": "ADD Composants",
+					"name": "(Admin) ADD Composants",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGQ1ODc0Y2RlMjgzZmU5MDY4YjdiNyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0OTkxNzY3MiwiZXhwIjoxNzQ5OTIxMjcyfQ.3V5u6XDdxHvfDPG6SkLHqzX4uUAElV_l_a34xKN_k8I",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
@@ -141,7 +242,7 @@
 							"formdata": [
 								{
 									"key": "titre",
-									"value": "CM samsung 3223",
+									"value": "CM samsung 3223112222",
 									"type": "text"
 								},
 								{
@@ -200,7 +301,14 @@
 					"name": "List Composants All",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGQ1ODc0Y2RlMjgzZmU5MDY4YjdiNyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0OTkyODc0OCwiZXhwIjoxNzQ5OTMyMzQ4fQ.yylKRY8r703EO04DyG74IwUa1H77sEcczEzca3R7PQE",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
@@ -273,7 +381,7 @@
 					"response": []
 				},
 				{
-					"name": "UPDATE Composants",
+					"name": "(Admin) UPDATE Composants",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -358,7 +466,7 @@
 					"response": []
 				},
 				{
-					"name": "DELETE Composants",
+					"name": "(Admin) DELETE Composants",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -414,7 +522,7 @@
 			"name": "Partaniares",
 			"item": [
 				{
-					"name": "List partenaires All",
+					"name": "(Admin) List partenaires All",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -437,7 +545,7 @@
 					"response": []
 				},
 				{
-					"name": "Detail partenaire",
+					"name": "(Admin) Detail partenaire",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -461,7 +569,7 @@
 					"response": []
 				},
 				{
-					"name": "Add partenaire",
+					"name": "(Admin) Add partenaire",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -493,7 +601,7 @@
 					"response": []
 				},
 				{
-					"name": "Update partenaire",
+					"name": "(Admin) Update partenaire",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -525,7 +633,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete partenaire",
+					"name": "(Admin) Delete partenaire",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -554,33 +662,17 @@
 			"name": "prix composant",
 			"item": [
 				{
-					"name": "List prix composant All",
+					"name": "(Admin) List prix composant for category partanaire",
 					"request": {
 						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8091/api/prixcomposant",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8091",
-							"path": [
-								"api",
-								"prixcomposant"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGQ1ODc0Y2RlMjgzZmU5MDY4YjdiNyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0OTkyMDkyOCwiZXhwIjoxNzQ5OTI0NTI4fQ.KpicTJL9SXCtwcY_VVZPgXLfrYmmv56FK6c-vlYl9KA",
+									"type": "string"
+								}
 							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "List prix composant for category",
-					"request": {
-						"auth": {
-							"type": "noauth"
 						},
 						"method": "GET",
 						"header": [],
@@ -614,12 +706,19 @@
 					"name": "List prix lower composant for category",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGQ1ODc0Y2RlMjgzZmU5MDY4YjdiNyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0OTkyNzI4MiwiZXhwIjoxNzQ5OTMwODgyfQ.nKzZ04r-t1QoZwhsLHsTD53hKvhtn6szX3p2BeyK0Io",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8091/api/prixcomposant/category_user?category=6846d8d3c90934a98cc14653",
+							"raw": "http://localhost:8091/api/prixcomposant/category_prixlow?category=6846d8d3c90934a98cc14653",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -628,7 +727,7 @@
 							"path": [
 								"api",
 								"prixcomposant",
-								"category_user"
+								"category_prixlow"
 							],
 							"query": [
 								{
@@ -641,16 +740,23 @@
 					"response": []
 				},
 				{
-					"name": "Add prix composant",
+					"name": "(Admin) Add prix composant",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGQ1ODc0Y2RlMjgzZmU5MDY4YjdiNyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0OTkyODc0OCwiZXhwIjoxNzQ5OTMyMzQ4fQ.yylKRY8r703EO04DyG74IwUa1H77sEcczEzca3R7PQE",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"composant\": \"6846e773c90934a98cc14695\",\r\n    \"partenaire\": \"6846d8d3c90934a98cc1466b\",\r\n    \"prix\": 250\r\n}",
+							"raw": "{\r\n    \"composant\": \"6846e7d2c90934a98cc1469f\",\r\n    \"partenaire\": \"6846d8d3c90934a98cc1466b\",\r\n    \"prix\": 35\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -673,7 +779,7 @@
 					"response": []
 				},
 				{
-					"name": "Update prix composant",
+					"name": "(Admin) Update prix composant",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -705,7 +811,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete prix composant",
+					"name": "(Admin) Delete prix composant",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -729,10 +835,17 @@
 					"response": []
 				},
 				{
-					"name": "Prix Composant ",
+					"name": "Prix Composant  all partenaire",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGQ1ODc0Y2RlMjgzZmU5MDY4YjdiNyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0OTkyNDk2OCwiZXhwIjoxNzQ5OTI4NTY4fQ._-ES_N85jfeW5thUxF5eO12vxgmvPTPmXVSAvAaixHY",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
@@ -753,6 +866,447 @@
 									"key": "composant",
 									"value": "6846e773c90934a98cc14695"
 								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AuthUser",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"francisco\",\r\n        \"last_name\": \"Duran Letelier\",\r\n        \"email\": \"fco.dl@hotmail.com\",\r\n        \"birthday\": \"1988/07/20\",\r\n        \"phone\": \"0665543242\",\r\n        \"address\": \"15 rue leon blum\",\r\n        \"password\": \"123123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \r\n  \"email\": \"fco.dl@hotmail.com\",\r\n  \"password\": \"123123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"auth",
+								"login"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User Admin",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \r\n  \"email\": \"pedro_last@gmail.com\",\r\n  \"password\": \"123123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"auth",
+								"login"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NDllMGMwNGIxMWU0ZmUzZTgxMmRkOCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ5NjcyNDg5LCJleHAiOjE3NDk2NzYwODl9.lU6-aYOJHDYg9B4coGlUBBU0z23-Vz149AzytGWA5mQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"last_name\": \"Duran\",\r\n  \"password\": \"0663783969\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NDllMGMwNGIxMWU0ZmUzZTgxMmRkOCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ5NjcyNDg5LCJleHAiOjE3NDk2NzYwODl9.lU6-aYOJHDYg9B4coGlUBBU0z23-Vz149AzytGWA5mQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"password\": \"0663783969\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/api/users/password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"users",
+								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "(Admin) All User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NDllMGMwNGIxMWU0ZmUzZTgxMmRkOCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ5NjcyNDg5LCJleHAiOjE3NDk2NzYwODl9.lU6-aYOJHDYg9B4coGlUBBU0z23-Vz149AzytGWA5mQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGQ1OTkxYmIxYTczM2IyOTQ3YjIwYyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ5OTE0MjE0LCJleHAiOjE3NDk5MTc4MTR9._593BBrqbVssF1Ffdum2lYLjqD_p_S2Te9RuVhQ0Pcw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/api/users/detail?id=684d5874cde283fe9068b7bb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"users",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "684d5874cde283fe9068b7bb"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "userconfig",
+			"item": [
+				{
+					"name": "ALL User Config ",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGQ1ODc0Y2RlMjgzZmU5MDY4YjdiNyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0OTkyOTc4NiwiZXhwIjoxNzQ5OTMzMzg2fQ.1JFAPner3qyma1KIdaN2MtDaarss9u4slfr8wK3jTwE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/api/userconfig",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"userconfig"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register User Config ",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGQ1ODc0Y2RlMjgzZmU5MDY4YjdiNyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0OTkyOTc4NiwiZXhwIjoxNzQ5OTMzMzg2fQ.1JFAPner3qyma1KIdaN2MtDaarss9u4slfr8wK3jTwE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"name\": \"Register 1\",\r\n    \"composants\": [\r\n    {\r\n      \"prixComposant\": \"68473205bf30549144826394\",\r\n      \"quantity\": 15\r\n    },\r\n     {\r\n      \"prixComposant\": \"684dcb7289cf66a2df3201d9\",\r\n      \"quantity\": 16\r\n    },\r\n     {\r\n      \"prixComposant\": \"684dcb6389cf66a2df3201d6\",\r\n      \"quantity\": 9\r\n    }\r\n  ]\r\n\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/api/userconfig",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"userconfig"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail User Config ",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGQ1ODc0Y2RlMjgzZmU5MDY4YjdiNyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0OTkyOTc4NiwiZXhwIjoxNzQ5OTMzMzg2fQ.1JFAPner3qyma1KIdaN2MtDaarss9u4slfr8wK3jTwE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/api/userconfig/684dcfaa1f39ee53228f9e0c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"userconfig",
+								"684dcfaa1f39ee53228f9e0c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update User Config ",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGQ1ODc0Y2RlMjgzZmU5MDY4YjdiNyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0OTkyOTc4NiwiZXhwIjoxNzQ5OTMzMzg2fQ.1JFAPner3qyma1KIdaN2MtDaarss9u4slfr8wK3jTwE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"id\": \"684dcfaa1f39ee53228f9e0c\",\r\n    \"name\": \"Register 1\",\r\n    \"composants\": [\r\n    {\r\n      \"prixComposant\": \"68473205bf30549144826394\",\r\n      \"quantity\": 15\r\n    },\r\n     {\r\n      \"prixComposant\": \"684dcb7289cf66a2df3201d9\",\r\n      \"quantity\": 16\r\n    },\r\n     {\r\n      \"prixComposant\": \"684dcb6389cf66a2df3201d6\",\r\n      \"quantity\": 9\r\n    }\r\n  ]\r\n\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/api/userconfig",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"userconfig"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User Config ",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGQ1ODc0Y2RlMjgzZmU5MDY4YjdiNyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0OTkyOTc4NiwiZXhwIjoxNzQ5OTMzMzg2fQ.1JFAPner3qyma1KIdaN2MtDaarss9u4slfr8wK3jTwE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/api/userconfig/684dcfaa1f39ee53228f9e0c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"userconfig",
+								"684dcfaa1f39ee53228f9e0c"
 							]
 						}
 					},

@@ -3,7 +3,38 @@ const composants = require('../models/composants');
 
 module.exports.getPrixComposant = async (query) => {
   try {
-    return await prixComposant.find({ composant: query }).populate('composants', 'titre').populate('partenaire', 'name url');
+    const prixList = await prixComposant
+      .find({ composant: query })
+      .populate({
+        path: 'composant',
+        select: '_id titre modele marque',
+        populate: {
+          path: 'marque',
+          select: 'name', // Solo traemos el nombre de la marca
+        },
+      })
+      .populate('partenaire', 'name url');
+
+    if (!prixList.length) {
+      return res.json({ message: 'No data found' });
+    }
+
+    const composantInfo = prixList[0].composant;
+
+    const prix_composant = prixList.map((item) => ({
+      _id: item._id,
+      partenaire: item.partenaire,
+      prix: item.prix,
+      date: item.date,
+      __v: item.__v,
+    }));
+
+    const response = {
+      composant: composantInfo,
+      prix_composant,
+    };
+
+    return response;
   } catch (err) {
     console.error('Error fetching composants:', err);
     return null;
@@ -17,7 +48,7 @@ module.exports.getPrixCategoryPartenaire = async (category, partenaire) => {
       return null;
     }
 
-    const composantList = await composants.find({ category: category }).select('_id titre');
+    const composantList = await composants.find({ category: category }).select('_id titre modele ').populate('marque', 'name');
 
     if (!composantList || composantList.length === 0) {
       return null;
@@ -42,33 +73,39 @@ module.exports.getPrixCategoryPartenaire = async (category, partenaire) => {
   }
 };
 
-module.exports.getPrixComposant = async (composant) => {
+module.exports.getPrixComposantLowerForCategory = async (category) => {
   try {
-    if (!composant) {
-      console.error('Composant is missing');
-      return null;
-    }
-    const composantDt = await composants.findById(composant).select('_id titre');
-
-    if (!composantDt) {
+    if (!category) {
+      console.error('Category is missing');
       return null;
     }
 
-    const prix = await prixComposant.find({ composant: composant }).select('_id prix').populate('partenaire', '_id name url');
+    const composantList = await composants.find({ category: category }).select('_id titre modele').populate('marque', 'name');
 
-    const response = {
-      _id: composantDt._id,
-      title: composantDt.title,
-      prices: prix.map((p) => ({
-        prix: p.prix,
-        prixId: p._id,
-        partenaire: {
-          _id: p.partenaire._id,
-          name: p.partenaire.name,
-          url: p.partenaire.url,
-        },
-      })),
-    };
+    if (!composantList || composantList.length === 0) {
+      return null;
+    }
+
+    const prixList = await prixComposant.find({
+      composant: { $in: composantList.map((c) => c._id) },
+    });
+
+    const response = composantList.map((comp) => {
+      const prixEntries = prixList.filter((p) => p.composant.equals(comp._id));
+
+      let minPrixEntry = null;
+      if (prixEntries.length > 0) {
+        minPrixEntry = prixEntries.reduce((min, curr) => (curr.prix < min.prix ? curr : min));
+      }
+      return {
+        composant: comp._id,
+        titre: comp.titre,
+        modele: comp.modele,
+        marque: comp.marque,
+        prix: minPrixEntry ? minPrixEntry.prix : null,
+        prixId: minPrixEntry ? minPrixEntry._id : null,
+      };
+    });
 
     return response;
   } catch (err) {
