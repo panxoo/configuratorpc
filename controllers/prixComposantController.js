@@ -55,7 +55,7 @@ module.exports.register = async (req, res) => {
     const prixComp = await prixCompServ.addPrixComp(req.body);
     res.status(201).json({ status: 201, data: prixComp, message: 'Prix composant created successfully' });
   } catch (err) {
-    res.status(400).json({ status: 400, message: error.message });
+    res.status(400).json({ status: 400, message: err.message });
   }
 };
 
@@ -76,7 +76,7 @@ module.exports.update = async (req, res) => {
     prixComp = await prixCompServ.updatePrix(req.body);
     res.status(201).json({ status: 201, message: 'Prix composant updated successfully' });
   } catch (err) {
-    res.status(400).json({ status: 400, message: error.message });
+    res.status(400).json({ status: 400, message: err.message });
   }
 };
 

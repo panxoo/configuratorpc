@@ -55,3 +55,5 @@ app.get('/', (req, res) => {
 app.listen(8091, () => {
   console.log('Server is running on http://localhost:8091');
 });
+
+module.exports = app;

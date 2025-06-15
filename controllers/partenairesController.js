@@ -13,6 +13,9 @@ module.exports.getAll = async (req, res) => {
 module.exports.partenaire = async (req, res) => {
   try {
     const partenaire = await partenaireService.getPartenaire(req.params.id);
+    if (!partenaire) {
+      return res.status(400).json({ message: 'Partenaire not found' });
+    }
     res.status(200).json({ partenaire });
   } catch (err) {
     console.error('Error detail partenaire:', err);
