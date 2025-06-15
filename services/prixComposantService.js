@@ -16,7 +16,8 @@ module.exports.getPrixComposant = async (query) => {
       .populate('partenaire', 'name url');
 
     if (!prixList.length) {
-      return res.json({ message: 'No data found' });
+      console.log('No data found');
+      return null;
     }
 
     const composantInfo = prixList[0].composant;
