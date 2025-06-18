@@ -1,0 +1,563 @@
+
+openapi: 3.0.0
+info:
+  title: API Configurateur de PC
+  version: 1.0.0
+  description: API REST pour la gestion des composants, utilisateurs, configurations et autres entités.
+servers:
+  - url: http://localhost:8091
+
+
+tags:
+  - name: Auth
+    description: Authentification des utilisateurs
+  - name: Utilisateurs
+    description: Gestion des utilisateurs et de leurs profils
+  - name: Configurations
+    description: Gestion des configurations utilisateur
+  - name: Partenaires
+    description: Gestion des partenaires
+  - name: Paramètres
+    description: Gestion des marques et catégories
+  - name: Setup
+    description: Initialisation des données de base
+  - name: Composants
+    description: Gestion des composants matériels
+  - name: PrixComposants
+    description: Gestion des prix par composant et partenaire
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    DefaultResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+
+paths:
+
+  /api/users:
+    get:
+      tags: [Utilisateurs]
+      summary: Récupérer tous les utilisateurs
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200': { description: Liste des utilisateurs }
+        '401': { description: Non autorisé }
+        '403': { description: Accès interdit }
+
+    put:
+      tags: [Utilisateurs]
+      summary: Mettre à jour les informations de l'utilisateur
+      security: [{ bearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: { type: string }
+                last_name: { type: string }
+                birthday: { type: string, format: date }
+                phone: { type: string }
+                address: { type: string }
+      responses:
+        '201': { description: Informations mises à jour }
+
+  /api/users/detail:
+    get:
+      tags: [Utilisateurs]
+      summary: Récupérer les informations de l'utilisateur connecté
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200': { description: Détail utilisateur }
+
+  /api/users/password:
+    put:
+      tags: [Utilisateurs]
+      summary: Modifier le mot de passe de l'utilisateur
+      security: [{ bearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [password]
+              properties:
+                password: { type: string }
+      responses:
+        '201': { description: Mot de passe mis à jour }
+
+  /api/users/{id}:
+    delete:
+      tags: [Utilisateurs]
+      summary: Supprimer un utilisateur
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Utilisateur supprimé }
+
+  /api/userConfig:
+    get:
+      tags: [Configurations]
+      summary: Récupérer les configurations utilisateur
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - name: user
+          in: query
+          required: false
+          schema: { type: string }
+      responses:
+        '200': { description: Liste des configurations }
+
+    post:
+      tags: [Configurations]
+      summary: Créer une configuration utilisateur
+      security: [{ bearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, composants]
+              properties:
+                name: { type: string }
+                composants:
+                  type: array
+                  items:
+                    type: object
+                    required: [prixComposant, quantity]
+                    properties:
+                      prixComposant: { type: string }
+                      quantity: { type: integer }
+      responses:
+        '201': { description: Configuration créée }
+
+    put:
+      tags: [Configurations]
+      summary: Mettre à jour une configuration utilisateur
+      security: [{ bearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [id, name, composants]
+              properties:
+                id: { type: string }
+                name: { type: string }
+                composants:
+                  type: array
+                  items:
+                    type: object
+                    required: [prixComposant, quantity]
+                    properties:
+                      prixComposant: { type: string }
+                      quantity: { type: integer }
+      responses:
+        '201': { description: Configuration mise à jour }
+
+  /api/userConfig/{id}:
+    get:
+      tags: [Configurations]
+      summary: Détail d'une configuration utilisateur
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Configuration trouvée }
+
+    delete:
+      tags: [Configurations]
+      summary: Supprimer une configuration
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Configuration supprimée }
+
+  /auth/login:
+    post:
+      tags: [Auth]
+      summary: Connexion de l'utilisateur
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200': { description: Authentification réussie }
+        '401': { description: Email ou mot de passe invalide }
+
+  /auth/register:
+    post:
+      tags: [Auth]
+      summary: Inscription d'un nouvel utilisateur
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, last_name, email, password]
+              properties:
+                name: { type: string }
+                last_name: { type: string }
+                email: { type: string }
+                password: { type: string }
+      responses:
+        '201': { description: Utilisateur inscrit }
+        '409': { description: Utilisateur déjà existant }
+
+  /api/partenaires:
+    get:
+      tags: [Partenaires]
+      summary: Récupérer tous les partenaires
+      responses:
+        '200': { description: Liste des partenaires }
+
+    post:
+      tags: [Partenaires]
+      summary: Créer un nouveau partenaire
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name]
+              properties:
+                name: { type: string }
+                url: { type: string }
+                commission: { type: number }
+                isActive: { type: boolean }
+      responses:
+        '201': { description: Partenaire créé }
+
+    put:
+      tags: [Partenaires]
+      summary: Mettre à jour un partenaire
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [_id, name]
+              properties:
+                _id: { type: string }
+                name: { type: string }
+                url: { type: string }
+                commission: { type: number }
+                isActive: { type: boolean }
+      responses:
+        '201': { description: Partenaire mis à jour }
+
+  /api/partenaires/{id}:
+    get:
+      tags: [Partenaires]
+      summary: Détail d'un partenaire
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Détail du partenaire }
+
+    delete:
+      tags: [Partenaires]
+      summary: Supprimer un partenaire
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Partenaire supprimé }
+
+  /api/parametres/categories:
+    get:
+      tags: [Paramètres]
+      summary: Récupérer toutes les catégories
+      responses:
+        '200': { description: Liste des catégories }
+
+    post:
+      tags: [Paramètres]
+      summary: Ajouter une nouvelle catégorie
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name]
+              properties:
+                name: { type: string }
+                description: { type: string }
+                isActive: { type: boolean }
+      responses:
+        '201': { description: Catégorie créée }
+
+    put:
+      tags: [Paramètres]
+      summary: Mettre à jour une catégorie
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [_id, name]
+              properties:
+                _id: { type: string }
+                name: { type: string }
+                description: { type: string }
+                isActive: { type: boolean }
+      responses:
+        '201': { description: Catégorie mise à jour }
+
+  /api/parametres/marques:
+    get:
+      tags: [Paramètres]
+      summary: Récupérer toutes les marques
+      responses:
+        '200': { description: Liste des marques }
+
+    post:
+      tags: [Paramètres]
+      summary: Ajouter une marque
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name]
+              properties:
+                name: { type: string }
+                isActive: { type: boolean }
+      responses:
+        '201': { description: Marque ajoutée }
+
+    put:
+      tags: [Paramètres]
+      summary: Mettre à jour une marque
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [_id, name]
+              properties:
+                _id: { type: string }
+                name: { type: string }
+                isActive: { type: boolean }
+      responses:
+        '201': { description: Marque mise à jour }
+
+  /api/setup:
+    post:
+      tags: [Setup]
+      summary: Initialiser les données de base
+      responses:
+        '200': { description: Initialisation effectuée }
+
+  /api/composants:
+    get:
+      tags: [Composants]
+      summary: Récupérer tous les composants (filtrables par catégorie)
+      parameters:
+        - name: category
+          in: query
+          required: false
+          schema: { type: string }
+      responses:
+        '200': { description: Liste des composants }
+
+    post:
+      tags: [Composants]
+      summary: Ajouter un composant (admin)
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [titre, category, marque]
+              properties:
+                titre: { type: string }
+                description: { type: string }
+                specificationsTechniques: { type: string }
+                modele: { type: string }
+                category: { type: string }
+                marque: { type: string }
+                image:
+                  type: string
+                  format: binary
+      responses:
+        '201': { description: Composant créé }
+
+    put:
+      tags: [Composants]
+      summary: Mettre à jour un composant
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [_id, titre]
+              properties:
+                _id: { type: string }
+                titre: { type: string }
+                description: { type: string }
+                specificationsTechniques: { type: string }
+                modele: { type: string }
+                category: { type: string }
+                marque: { type: string }
+                image:
+                  type: string
+                  format: binary
+      responses:
+        '201': { description: Composant mis à jour }
+
+  /api/composants/{id}:
+    get:
+      tags: [Composants]
+      summary: Récupérer le détail d’un composant
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Composant trouvé }
+
+    delete:
+      tags: [Composants]
+      summary: Supprimer un composant
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Composant supprimé }
+
+  /api/prixcomposants/category_partenaire:
+    get:
+      tags: [PrixComposants]
+      summary: Obtenir les prix d’une catégorie pour un partenaire
+      parameters:
+        - name: category
+          in: query
+          required: true
+          schema: { type: string }
+        - name: partenaire
+          in: query
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Prix récupérés }
+
+  /api/prixcomposants/category_prixlow:
+    get:
+      tags: [PrixComposants]
+      summary: Composants au prix le plus bas par catégorie
+      parameters:
+        - name: category
+          in: query
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Résultats récupérés }
+
+  /api/prixcomposants/composant_prix:
+    get:
+      tags: [PrixComposants]
+      summary: Obtenir les prix d’un composant
+      parameters:
+        - name: composant
+          in: query
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Liste des prix du composant }
+
+  /api/prixcomposants:
+    post:
+      tags: [PrixComposants]
+      summary: Ajouter un prix composant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [composant, partenaire, prix]
+              properties:
+                composant: { type: string }
+                partenaire: { type: string }
+                prix: { type: number }
+      responses:
+        '201': { description: Prix ajouté }
+
+    put:
+      tags: [PrixComposants]
+      summary: Mettre à jour un prix composant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [_id, prix]
+              properties:
+                _id: { type: string }
+                prix: { type: number }
+      responses:
+        '201': { description: Prix mis à jour }
+
+  /api/prixcomposants/{id}:
+    delete:
+      tags: [PrixComposants]
+      summary: Supprimer un prix composant
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Prix supprimé }

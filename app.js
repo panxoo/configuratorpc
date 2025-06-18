@@ -12,9 +12,15 @@ const prixComposantRoute = require('./routes/prixComposantRoute');
 const userRoute = require('./routes/userRoute');
 const userConfigRoute = require('./routes/userConfigRoute');
 
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./openApi.yaml');
+
 const requireRole = require('./middlewares/requireRoleMiddlewares');
 
 const app = express();
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 dotenv.config();
 
