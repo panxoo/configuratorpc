@@ -2,7 +2,7 @@ const user = require('../models/user');
 
 module.exports.getUsers = async () => {
   try {
-    return await user.find().select('name last_name email role createdAt');
+    return await user.find().select('name last_name email role createdAt address phone birthday');
   } catch (err) {
     console.error('Error fetching users:', err);
     return null;

@@ -2,7 +2,7 @@ const partenaire = require('../models/partenaires');
 
 module.exports.getPartenaires = async () => {
   try {
-    return await partenaire.find().select('nom url');
+    return await partenaire.find();
   } catch (err) {
     console.error('Error fetching partenaire:', err);
     return null;

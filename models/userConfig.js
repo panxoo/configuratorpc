@@ -5,7 +5,7 @@ const userConfigSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   composants: [
     {
-      prixComposant: { type: mongoose.Schema.Types.ObjectId, ref: 'PrixComposant', required: true },
+      composant: { type: mongoose.Schema.Types.ObjectId, ref: 'Composant', required: true },
       quantity: { type: Number, required: true },
     },
   ],

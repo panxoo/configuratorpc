@@ -7,6 +7,7 @@ const composantSchema = new mongoose.Schema({
   modele: { type: String, required: false, default: '' },
   category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true },
   marque: { type: mongoose.Schema.Types.ObjectId, ref: 'Marque', required: true },
+  prix: { type: Number, required: true },
   image: {
     data: Buffer,
     contentType: String,

@@ -1,8 +1,17 @@
 const userConfig = require('../models/userConfig');
 
-module.exports.getuserConfigs = async (userid) => {
+module.exports.getuserConfigs = async () => {
   try {
-    return await userConfig.find({ user: userid }).select('name dateCreated dateUpdated');
+    return await userConfig
+      .find()
+      .populate({
+        path: 'composants.composant',
+        select: 'prix titre',
+      })
+      .populate({
+        path: 'user',
+        select: 'name',
+      });
   } catch (err) {
     console.error('Error fetching user Config:', err);
     return null;
@@ -62,7 +71,15 @@ module.exports.existsuserConfig = async (name, user, _id) => {
 
 module.exports.updateuserConfig = async (userConfigData) => {
   try {
-    await userConfig.findByIdAndUpdate(userConfigData.id, userConfigData);
+    const newComposants = userConfigData.composants.map((item) => ({
+      composant: item.composant._id,
+      quantity: item.quantity,
+    }));
+    const user = userConfigData.user._id || userConfigData.user;
+    const parseData = { ...userConfigData, user, composants: newComposants };
+    console.log('Updating userConfig with data:', parseData);
+
+    await userConfig.findByIdAndUpdate(userConfigData._id, parseData);
   } catch (err) {
     console.error('Error updating userConfig:', err);
   }

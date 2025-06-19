@@ -1,5 +1,7 @@
 const UserAuth = require('../models/user');
 const bcrypt = require('bcrypt');
+const mongoose = require('mongoose');
+const ObjectId = mongoose.Types.ObjectId;
 
 // Récupérer un user
 module.exports.getUser = async (query) => {
@@ -16,6 +18,7 @@ module.exports.getUser = async (query) => {
 module.exports.createUser = async (userData) => {
   try {
     userData.password = await module.exports.encryptPass(userData.password);
+    userData._id = new ObjectId();
     let user = new UserAuth(userData);
     await user.save();
   } catch (err) {
