@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const bodyPareser = require('body-parser');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
@@ -23,6 +24,13 @@ const app = express();
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 dotenv.config();
+
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  })
+);
 
 app.use(bodyPareser.json());
 

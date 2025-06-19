@@ -43,18 +43,8 @@ module.exports.register = async (req, res) => {
 
 module.exports.update = async (req, res) => {
   try {
-    console.log('req.body', req.body);
-    // validation exists config
-    let configExists = await userConfigService.existsuserConfig(req.body.name, req.user, req.body.id);
-    if (configExists) {
-      return res.status(409).json({ message: 'config already exists' });
-    }
-    console.log('configExists', configExists);
     const data = req.body;
-    data.user = req.user;
-    // cree un config
-
-    config = await userConfigService.updateuserConfig(data);
+    const config = await userConfigService.updateuserConfig(data);
     res.status(201).json({ status: 201, data: config, message: 'config updated successfully' });
   } catch (err) {
     res.status(400).json({ status: 400, message: error.message });

@@ -1,12 +1,14 @@
 const composant = require('../models/composants');
+const mongoose = require('mongoose');
+const ObjectId = mongoose.Types.ObjectId;
 
 // This service lists all composants or filters them by category.
 module.exports.getComposants = async (query) => {
   try {
     if (query) {
-      return await composant.find({ category: query }).select('titre modele').populate('category', 'name').populate('marque', 'name');
+      return await composant.find({ category: query }).populate('category', 'name').populate('marque', 'name');
     } else {
-      return await composant.find().select('titre modele').populate('category', 'name').populate('marque', 'name');
+      return await composant.find().populate('category', 'name').populate('marque', 'name');
     }
   } catch (err) {
     console.error('Error fetching composants:', err);
@@ -27,7 +29,10 @@ module.exports.getComposant = async (query) => {
 // This service adds a new composant to the database.
 module.exports.addComposant = async (composantData) => {
   try {
-    const newComposant = new composant(composantData);
+    const newCategory = composantData.category._id ? composantData.category._id : composantData.category;
+    const newMarque = composantData.marque._id ? composantData.marque._id : composantData.marque;
+    const parseData = { ...composantData, category: newCategory, marque: newMarque, _id: new ObjectId() };
+    const newComposant = new composant(parseData);
     await newComposant.save();
   } catch (err) {
     console.error('Error adding composant:', err);

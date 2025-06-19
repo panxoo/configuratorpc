@@ -100,9 +100,9 @@ const addUserInitialData = async () => {
     }
 
     const initialUsers = [
-      { name: 'Pedro', last_name: 'Last', email: 'pedro_last@gmail.com', role: 'admin', password: '123123' },
-      { name: 'Toto', last_name: 'PP', email: 'toto_pp@gmail.com', role: 'admin', password: '123123' },
-      { name: 'Pepe', last_name: 'AA', email: 'pepe_aa@gmail.com', role: 'user', password: '123123' },
+      { name: 'Pedro', last_name: 'Last', email: 'pedro_last@gmail.com', role: 'admin', password: '123123', birthday: '1988/07/20', phone: '0665543242', address: '15 rue leon blum' },
+      { name: 'Toto', last_name: 'PP', email: 'toto_pp@gmail.com', role: 'admin', password: '123123', birthday: '1988/07/20', phone: '0665543242', address: '15 rue leon blum' },
+      { name: 'Pepe', last_name: 'AA', email: 'pepe_aa@gmail.com', role: 'user', password: '123123', birthday: '1988/07/20', phone: '0665543242', address: '15 rue leon blum' },
     ];
 
     for (const user of initialUsers) {
